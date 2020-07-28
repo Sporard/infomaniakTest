@@ -1,0 +1,24 @@
+{
+  "name": "infomaniaktest",
+  "version": "1.0.0",
+  "description": "Test d'infomaniak pour l'alternance",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sporard/infomaniakTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sporard/infomaniakTest/issues"
+  },
+  "homepage": "https://github.com/Sporard/infomaniakTest#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

@@ -3,7 +3,7 @@ const bodyparser = require('body-parser');
 
 const apiRoutes = require('./routes/api');
 const mailmensRoutes = require('./routes/mailmen');
-const packageRoutes = require('./routes/packages');
+//const packageRoutes = require('./routes/packages');
 const app = express();
 
 // CORS HEADERS
@@ -18,7 +18,11 @@ app.use((req,res, next) => {
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true}));
 
-
+// app.get("/",function(req,res,next) {
+//         res.send("Hello world");
+//         next();
+//     }
+// )
 //API
 app.use("/api", apiRoutes);
 
@@ -28,11 +32,6 @@ app.use("/mailmen", mailmensRoutes);
 
 // packages
 
-app.use("/packages", packageRoutes);
-
-// 404 HANDLER
-app.use(function (req, res, next) {
-    res.status(404).send("404 not found | Sorry can't find that !")
-});
+//app.use("/packages", packageRoutes);
 
 module.exports = app;

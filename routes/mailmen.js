@@ -3,11 +3,11 @@ const mailmenController = require('../controllers/mailmenController');
 const mailmenRouter = express.Router();
 
 
-mailmenRouter.get("/mailmen", mailmenController.getMailmens);
-
-mailmenRouter.get("/mailmen/:idMailmen", mailmenController.getMailmen);
-
-mailmenRouter.post("/mailmen/", mailmentController.postMailmen);
+// mailmenRouter.get("/mailmen", mailmenController.getMailmens);
+//
+// mailmenRouter.get("/mailmen/:idMailmen", mailmenController.getMailmen);
+//
+// mailmenRouter.post("/mailmen/", mailmentController.postMailmen);
 
 
 

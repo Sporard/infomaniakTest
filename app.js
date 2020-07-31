@@ -3,7 +3,7 @@ const bodyparser = require('body-parser');
 
 const apiRoutes = require('./routes/api');
 const mailmensRoutes = require('./routes/mailmen');
-//const packageRoutes = require('./routes/packages');
+const packageRoutes = require('./routes/package');
 const app = express();
 
 // CORS HEADERS
@@ -18,13 +18,14 @@ app.use((req,res, next) => {
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true}));
 
-// app.get("/",function(req,res,next) {
-//         res.send("Hello world");
-//         next();
-//     }
-// )
+
 //API
-app.use("/api", apiRoutes);
+app.use("/", apiRoutes);
+//Mailmen
+app.use("/mailmen", mailmensRoutes);
+
+//Packages
+app.use("/package", packageRoutes);
 
 
 //Mailmen

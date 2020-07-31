@@ -1,0 +1,3 @@
+mailmens = []
+
+module.exports = mailmens;

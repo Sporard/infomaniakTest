@@ -1,6 +1,6 @@
-let packages = []
-let mailmen = [];
-let wait = [];
+packages = require("../models/package");
+mailmens = require("../models/mailmen");
+waiting = require("../models/waiting");
 
 
 // Post Ressources
@@ -8,12 +8,16 @@ let wait = [];
 exports.postData = (req,res,next) => {
     packages = req.body.packages;
     mailmen = req.body.mailmen;
+    return res.status(200);
 }
 
 exports.Solution = (req, res, next) => {
     //Récupération des data
-    packages = req.body.packages;
-    mailmens = req.body.mailmen;
+    console.log(waiting);
+    console.log(packages);
+    console.log(mailmens);
+    // packages = req.body.packages;
+    // mailmens = req.body.mailmen;
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure
 
@@ -41,14 +45,10 @@ exports.Solution = (req, res, next) => {
         pack_delivred = false;
         distanceX = (packages[indice_pack].x - mailmens[indice_mail].x) ** 2;
         distanceY = (packages[indice_pack].y - mailmens[indice_mail].y) ** 2;
-        console.log(distanceX);
-        console.log(distanceY);
         new_distance = Math.sqrt(distanceX + distanceY);
         new_to_homeX = (mailmens[indice_mail].homeX - packages[indice_pack].x) ** 2;
         new_to_homeY = (mailmens[indice_mail].homeY - packages[indice_pack].y) ** 2;
         new_to_home_length = Math.sqrt(new_to_homeX + new_to_homeY);
-        console.log("distance\n");
-        console.log(new_to_home_length);
         //Si on dépasse les 240 avant d'arriver au colis en cours
         //On passe au prochain mailmen
         if (mailmens[indice_mail].length + new_distance > 240) {
@@ -76,6 +76,7 @@ exports.Solution = (req, res, next) => {
             indice_pack += 1;
             indice_mail += 1;
             pack_delivred = true;
+
         }
         //On boucle sur les livreurs pour bien redistribuer les packages
 
@@ -83,5 +84,12 @@ exports.Solution = (req, res, next) => {
             indice_mail = 0;
         }
     }
-    res.status(200).json(mailmens)
+    mailmens.forEach(mailmen =>{
+      sol.push({
+          "uid":mailmen.uid,
+          "tour":mailmen.packages,
+          "length":mailmen.length
+      })
+    })
+    res.status(200).json(sol)
 }

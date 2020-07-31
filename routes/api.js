@@ -4,7 +4,7 @@ const apiRouter = express.Router();
 apiRouter.get("/",function(req, res,next){
     res.send("hello world");
 })
-apiRouter.post("/", apiController.postData);
+apiRouter.post("/data", apiController.postData);
 apiRouter.post("/solution", apiController.Solution);
 
 

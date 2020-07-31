@@ -3,11 +3,11 @@ const packageController = require('../controllers/packageController');
 const packageRouter = express.Router();
 
 
-packageRouter.get("/packages", packageController.getPackages);
+packageRouter.get("/", packageController.getPackages);
 
-packageRouter.get("/packages/:idPackage", packageController.getPackage);
+packageRouter.get("/:idPackage", packageController.getPackage);
 
-packageRouter.post("/packages",packageController.postPackage)
+packageRouter.get("/waiting", packageController.getWaiting);
 
-
+packageRouter.get("/waiting/:idWaiting", packageController.getWaitingPack);
 module.exports = packageRouter;

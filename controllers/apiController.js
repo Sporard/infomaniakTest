@@ -18,8 +18,8 @@ exports.postData = (req,res,next) => {
 exports.Solution = (req, res, next) => {
     //Récupération des data
 
-    packages = req.data.packages;
-    mailmens = req.data.mailmen;
+    packages = req.body.packages;
+    mailmens = req.body.mailmen;
 
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure

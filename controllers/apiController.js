@@ -2,7 +2,11 @@ packages = require("../models/package");
 mailmens = require("../models/mailmen");
 waiting = require("../models/waiting");
 
-
+const calculDistance = function (Xa,Ya,Xb,Yb){
+    Xab =  (Xb - Xa) ** 2;
+    Yab =  (Yb - Ya) ** 2;
+    return Math.sqrt(Xab + Yab);
+}
 // Post Ressources
 
 exports.postData = (req,res,next) => {
@@ -13,11 +17,9 @@ exports.postData = (req,res,next) => {
 
 exports.Solution = (req, res, next) => {
     //Récupération des data
-    console.log(waiting);
-    console.log(packages);
-    console.log(mailmens);
-    // packages = req.body.packages;
-    // mailmens = req.body.mailmen;
+
+    packages = req.body.packages;
+    mailmens = req.body.mailmen;
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure
 
@@ -28,27 +30,21 @@ exports.Solution = (req, res, next) => {
         mailmen.packages = [];
     })
     let sol = [];
+
     //On distribue chaque package
     //on donne un packet par livreur et on boucle sur les livreurs pour etre équitable 
     let indice_pack = 0;
     let indice_mail = 0;
     let pack_delivred;
     let pack;
-    let distanceX;
-    let distanceY;
     let new_distance;
-    let new_to_homeX;
-    let new_to_homeY;
     let new_to_home_length;
     while (indice_pack < packages.length) {
         //Si le pack a été pris pas un mailmen
         pack_delivred = false;
-        distanceX = (packages[indice_pack].x - mailmens[indice_mail].x) ** 2;
-        distanceY = (packages[indice_pack].y - mailmens[indice_mail].y) ** 2;
-        new_distance = Math.sqrt(distanceX + distanceY);
-        new_to_homeX = (mailmens[indice_mail].homeX - packages[indice_pack].x) ** 2;
-        new_to_homeY = (mailmens[indice_mail].homeY - packages[indice_pack].y) ** 2;
-        new_to_home_length = Math.sqrt(new_to_homeX + new_to_homeY);
+        new_distance = calculDistance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
+        new_to_home_length = calculDistance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
+
         //Si on dépasse les 240 avant d'arriver au colis en cours
         //On passe au prochain mailmen
         if (mailmens[indice_mail].length + new_distance > 240) {
@@ -56,14 +52,18 @@ exports.Solution = (req, res, next) => {
         }
         //Si on dépasse en rentrant à la maison apres
         //on passe au prochain mailmen
-        if ((mailmens[indice_mail].length + new_distance + new_to_home_length) > 240) {
+
+
+        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240  ) {
             indice_mail += 1;
+
         }
         //Si le paquet n'a pas été livré et qu'on a tester sur
         // tout les mailmens alors on le mets en attente
         if (indice_mail >= mailmens.length && !pack_delivred) {
-            wait.push(pack);
+            waiting.push(packages[indice_pack]);
             indice_pack +=1;
+            indice_mail = 0;
         }
         // Le paquet est délivré
         else {
@@ -76,12 +76,12 @@ exports.Solution = (req, res, next) => {
             indice_pack += 1;
             indice_mail += 1;
             pack_delivred = true;
-
         }
         //On boucle sur les livreurs pour bien redistribuer les packages
 
         if (indice_mail >= mailmens.length) {
             indice_mail = 0;
+
         }
     }
     mailmens.forEach(mailmen =>{

@@ -38,54 +38,6 @@ exports.Solution = (req, res, next) => {
     let pack_delivred;
     let new_distance;
     let new_to_home_length;
-    while(waiting.length > 0 && indice_pack < waiting.length ){
-        //Si le pack a été pris pas un mailmen
-        console.log(waiting);
-        console.log(indice_pack);
-        pack_delivred = false;
-        new_distance = calculDistance(mailmens[indice_mail].x,mailmens[indice_mail].y,waiting[indice_pack].x,waiting[indice_pack].y);
-        new_to_home_length = calculDistance(waiting[indice_pack].x,waiting[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
-
-        //Si on dépasse les 240 avant d'arriver au colis en cours
-        //On passe au prochain mailmen
-        if (mailmens[indice_mail].length + new_distance > 240) {
-            indice_mail += 1;
-        }
-        //Si on dépasse en rentrant à la maison apres
-        //on passe au prochain mailmen
-
-
-        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240  ) {
-            indice_mail += 1;
-
-        }
-        //Si le paquet n'a pas été livré et qu'on a tester sur
-        // tout les mailmens alors on le laisse en attente
-        if (indice_mail >= mailmens.length && !pack_delivred) {
-            indice_pack += 1;
-            indice_mail = 0;
-        }
-        // Le paquet est délivré
-        else {
-            //Sinon on ajoute le package au mailmen
-            mailmens[indice_mail].packages.push(waiting[indice_pack].uid);
-            mailmens[indice_mail].x = waiting[indice_pack].x;
-            mailmens[indice_mail].y = waiting[indice_pack].y;
-            mailmens[indice_mail].length += new_distance;
-            waiting.splice(indice_pack,1);
-
-            indice_mail += 1;
-            pack_delivred = true;
-
-        }
-        //On boucle sur les livreurs pour bien redistribuer les packages
-
-        if (indice_mail >= mailmens.length) {
-            indice_mail = 0;
-
-        }
-    }
-
     indice_pack = 0;
     indice_mail = 0;
     while (indice_pack < packages.length) {
@@ -96,14 +48,14 @@ exports.Solution = (req, res, next) => {
 
         //Si on dépasse les 240 avant d'arriver au colis en cours
         //On passe au prochain mailmen
-        if (mailmens[indice_mail].length + new_distance > 240) {
+        if (mailmens[indice_mail].length + new_distance >= 240) {
             indice_mail += 1;
         }
         //Si on dépasse en rentrant à la maison apres
         //on passe au prochain mailmen
 
 
-        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240  ) {
+        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240  ) {
             indice_mail += 1;
 
         }

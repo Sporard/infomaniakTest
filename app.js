@@ -16,8 +16,8 @@ app.use((req,res, next) => {
 });
 
 // BODY TO JSON
-//app.use(bodyparser.json());
-//app.use(bodyparser.urlencoded({ extended: true}));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true}));
 
 
 //API

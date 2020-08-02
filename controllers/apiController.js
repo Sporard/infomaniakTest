@@ -18,8 +18,9 @@ exports.postData = (req,res,next) => {
 exports.Solution = (req, res, next) => {
     //Récupération des data
 
-    packages = req.body.packages;
-    mailmens = req.body.mailmen;
+    packages = req.payload.packages;
+    mailmens = req.payload.mailmen;
+
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure
 
@@ -48,14 +49,12 @@ exports.Solution = (req, res, next) => {
 
         //Si on dépasse les 240 avant d'arriver au colis en cours
         //On passe au prochain mailmen
-        if (mailmens[indice_mail].length + new_distance >= 240) {
+        if (mailmens[indice_mail].length + new_distance >= 240.00) {
             indice_mail += 1;
         }
         //Si on dépasse en rentrant à la maison apres
         //on passe au prochain mailmen
-
-
-        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240  ) {
+        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
             indice_mail += 1;
 
         }
@@ -68,11 +67,9 @@ exports.Solution = (req, res, next) => {
         }
         // Le paquet est délivré
         else {
-            //Sinon on ajoute le package au mailmen
             mailmens[indice_mail].packages.push(packages[indice_pack].uid);
             mailmens[indice_mail].x = packages[indice_pack].x;
             mailmens[indice_mail].y = packages[indice_pack].y;
-
             mailmens[indice_mail].length += new_distance;
             indice_pack += 1;
             indice_mail += 1;

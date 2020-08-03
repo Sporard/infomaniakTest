@@ -21,7 +21,7 @@ exports.Solution = (req, res, next) => {
 
     //We need to keep the home of mailmen in order
     //to came back after the delivery
-
+    console.log(req);
     mailmens.forEach(mailmen => {
         mailmen.homeX = mailmen.x;
         mailmen.homeY = mailmen.y;

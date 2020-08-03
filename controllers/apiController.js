@@ -79,6 +79,7 @@ exports.Solution = (req, res, next) => {
         } else {
             //Sinon on passe au mailmen suivant pour essayer avec lui
             indice_mail ++;
+            indice_pack ++;
         }
         if (indice_mail >= mailmens.length) {
             indice_mail = 0;

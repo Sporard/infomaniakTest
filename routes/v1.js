@@ -5,7 +5,7 @@ v1Router.get("/",function(req, res,next){
     res.send("hello world v1");
 })
 
-v1Router.post("/solution", v1Controller.Solution);
+v1Router.post("/", v1Controller.Solution);
 
 
 

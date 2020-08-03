@@ -30,7 +30,7 @@ exports.Solution = (req, res, next) => {
     indice_mail = 0;
     while (indice_pack < packages.length) {
 
-        pack_delivred = false;
+        pack_delivred = true;
         new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
         new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
         // If we go over 240 km with the package 
@@ -39,12 +39,12 @@ exports.Solution = (req, res, next) => {
             pack_delivred = false;
         }
         //If we go over 240km by returning home
-        else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240.00  ) {
+        else if ((mailmens[indice_mail].length + new_distance + new_to_home_length) > 240.00  ) {
             pack_delivred = false;
 
         }
         //If the package hasn't been delivred we put it into waiting room
-        else if (indice_mail >= mailmens.length && !pack_delivred) {
+        else if (!pack_delivred) {
             waiting.push(packages[indice_pack]);
             pack_delivred = false;
         }

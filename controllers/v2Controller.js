@@ -37,8 +37,6 @@ exports.Solution = (req, res, next) => {
     let pack_delivred;
     let new_distance;
     let new_to_home_length;
-    indice_pack = 0;
-    indice_mail = 0;
     while (indice_pack < packages.length) {
         indice_mail = smallest_mailmen(mailmens);
         pack_delivred = true;

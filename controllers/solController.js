@@ -28,6 +28,10 @@ const closetPackage = function (mailmens, closeMailmen, packages, startPack) {
             }
         }
     }
+    new_to_home_length = distance(packages[min_indice].x,packages[min_indice].y,mailmens[closeMailmen].homeX,mailmens[closeMailmen].homeY);
+    if ((mailmens[closeMailmen].length + new_distance + new_to_home_length) > 240.0){
+        return undefined;
+    }
     return min_indice;
 }
 
@@ -53,49 +57,19 @@ exports.Solution = (req, res, next) => {
 
     let indice_pack = 0;
     let indice_mail = 0;
-    let pack_delivred;
-    let new_distance;
-    let new_to_home_length;
-    indice_pack = 0;
-    indice_mail = 0;
     while (indice_pack < packages.length) {
         indice_mail = smallest_mailmen(mailmens);
-        pack_delivred = false;
-        new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
-        new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
-        // If we go over 240 km with the package
-        if (mailmens[indice_mail].length + new_distance > 240.00) {
-
-            pack_delivred = false;
-        }
-        //If we go over 240km by returning home
-        else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240.00  ) {
-            pack_delivred = false;
-
-        }
-        //If the package hasn't been delivred we put it into waiting room
-        else if (indice_mail >= mailmens.length && !pack_delivred) {
-            waiting.push(packages[indice_pack]);
-            pack_delivred = false;
-        }
-        // Package delivred
-        else {
-            pack_delivred = true;
-        }
-        //If the package is delivred so we update the data of the mailmen
-        //We go to the next package and mailmen in order to distribute
-        //package equitably
-        if (pack_delivred) {
-            mailmens[indice_mail].packages.push(packages[indice_pack].uid);
-            mailmens[indice_mail].x = packages[indice_pack].x;
-            mailmens[indice_mail].y = packages[indice_pack].y;
+        pack_to_delivred = closetPackage(mailmens,indice_mail,packages,indice_pack);
+        
+        if(pack_to_delivred){
+            new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[pack_to_delivred].x,packages[pack_to_delivred].y);
+            mailmens[indice_mail].packages.push(packages[pack_to_delivred].uid);
+            mailmens[indice_mail].x = packages[pack_to_delivred].x;
+            mailmens[indice_mail].y = packages[pack_to_delivred].y;
             mailmens[indice_mail].length += new_distance;
-            indice_pack++;
-
-        } else {
-            //If the package is not delivred we go to the next one and the next mailmen
-            indice_pack ++;
         }
+        
+        indice_pack++;
     }
 
     // Building of the answer as asked in the subject

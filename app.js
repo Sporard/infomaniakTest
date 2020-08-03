@@ -2,7 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const options = {
     inflate: true,
-    limit: 1000,
+    limit: '50mb',
     extended: true,
     type: "application/x-www-form-urlencoded"
 }

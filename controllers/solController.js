@@ -67,9 +67,12 @@ exports.Solution = (req, res, next) => {
             mailmens[indice_mail].x = packages[pack_to_delivred].x;
             mailmens[indice_mail].y = packages[pack_to_delivred].y;
             mailmens[indice_mail].length += new_distance;
+            packages.splice(pack_to_delivred,1);
+        } else {
+            indice_pack++;
         }
         
-        indice_pack++;
+        
     }
 
     // Building of the answer as asked in the subject

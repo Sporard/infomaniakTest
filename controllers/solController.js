@@ -15,6 +15,25 @@ const smallest_mailmen = function (mailmens) {
     return min_indice;
 }
 
+const closetPackage = function (mailmens, closeMailmen, packages, startPack) {
+    min_indice = startPack;
+    min_length = distance(mailmens[closeMailmen].x,mailmens[closeMailmen].y,packages[startPack].x,packages[startPack].y);;
+    for (i = startPack; i < packages.length; i++){
+        new_distance = distance(mailmens[closeMailmen].x,mailmens[closeMailmen].y,packages[i].x,packages[i].y);
+        new_to_home_length = distance(packages[i].x,packages[i].y,mailmens[closeMailmen].homeX,mailmens[closeMailmen].homeY);
+        if ( (mailmens[closeMailmen].length + new_distance + new_to_home_length ) < 240 ) {
+            if (new_distance < min_length) {
+                min_length = new_distance;
+                min_indice = i;
+            }
+        }
+    }
+    return min_indice;
+}
+
+//So we need to find the mailmen with the min length
+//Then we need to find the package not traited closest to this mailmen 
+
 exports.Solution = (req, res, next) => {
     //Data
     let packages = req.body.packages;

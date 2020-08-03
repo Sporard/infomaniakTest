@@ -1,15 +1,22 @@
 const express = require('express');
 const bodyparser = require('body-parser');
-const options = {
+const optionsURL = {
     inflate: true,
     limit: '50mb',
     extended: true,
     type: "application/x-www-form-urlencoded"
 }
+const optionJSON = {
+    inflate: true,
+    limit: '50mb',
+    extended: true,
+    type: "application/json"
+}
 
 
 const v1Routes = require('./routes/v1');
 const v2Routes = require('./routes/v2');
+const solutionRoute = require('./routes/solution')
 const mailmensRoutes = require('./routes/mailmen');
 const packageRoutes = require('./routes/package');
 const waitingRoutes = require('./routes/waiting');
@@ -25,10 +32,11 @@ app.use((req,res, next) => {
 });
 
 // BODY TO JSON
-app.use(bodyparser.json(options));
-app.use(bodyparser.urlencoded(options));
+app.use(bodyparser.json(optionsURL));
+app.use(bodyparser.urlencoded(optionsURL));
 
-
+//Solution
+app.use("/", solutionRoute);
 //Solution v1 straightforward way
 app.use("/v1", v1Routes);
 

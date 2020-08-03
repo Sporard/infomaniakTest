@@ -3,12 +3,15 @@ const distance = function (Xa,Ya,Xb,Yb){
     let Yab =  (Yb - Ya) ** 2;
     return Math.sqrt(Xab + Yab);
 }
-// Post Ressources
-
-exports.postData = (req,res,next) => {
-    packages = req.body.packages;
-    mailmen = req.body.mailmen;
-    return res.status(200).json(req.body);
+const smallest_mailmen = function (mailmens) {
+    min_indice = 0;
+    min_length = mailmens[min_indice].length;
+    for (i = 0; i < mailmens.length; i++) {
+        if (mailmens[i].length < min_length) {
+            min_indice = i;
+        }
+    }
+    return min_indice;
 }
 
 exports.Solution = (req, res, next) => {
@@ -36,13 +39,13 @@ exports.Solution = (req, res, next) => {
     indice_pack = 0;
     indice_mail = 0;
     while (indice_pack < packages.length) {
-
+        indice_mail = smallest_mailmen(mailmens);
         pack_delivred = false;
         new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
         new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
-        // If we go over 240 km with the package 
+        // If we go over 240 km with the package
         if (mailmens[indice_mail].length + new_distance > 240.00) {
-            
+
             pack_delivred = false;
         }
         //If we go over 240km by returning home
@@ -68,25 +71,20 @@ exports.Solution = (req, res, next) => {
             mailmens[indice_mail].y = packages[indice_pack].y;
             mailmens[indice_mail].length += new_distance;
             indice_pack++;
-            indice_mail++;
+
         } else {
             //If the package is not delivred we go to the next one and the next mailmen
-            indice_mail ++;
             indice_pack ++;
-        }
-        //If we have try every mailmen but not every package we go back to the first mailmen
-        if (indice_mail >= mailmens.length) {
-            indice_mail = 0;
         }
     }
 
     // Building of the answer as asked in the subject
     mailmens.forEach(mailmen =>{
-      sol.push({
-          "uid":mailmen.uid,
-          "tour":mailmen.packages,
-          "length":mailmen.length
-      })
+        sol.push({
+            "uid":mailmen.uid,
+            "tour":mailmen.packages,
+            "length":mailmen.length
+        })
     })
     res.status(200).json(sol)
 }

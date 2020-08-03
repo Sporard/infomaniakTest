@@ -6,8 +6,10 @@ const options = {
     extended: true,
     type: "application/x-www-form-urlencoded"
 }
-var qs = require('querystring');
-const apiRoutes = require('./routes/api');
+
+
+const v1Routes = require('./routes/v1');
+const v2Routes = require('./routes/v2');
 const mailmensRoutes = require('./routes/mailmen');
 const packageRoutes = require('./routes/package');
 const waitingRoutes = require('./routes/waiting');
@@ -27,9 +29,12 @@ app.use(bodyparser.json(options));
 app.use(bodyparser.urlencoded(options));
 
 
-//API
-app.use("/", apiRoutes);
+//Solution v1 straightforward way
+app.use("/v1", v1Routes);
 
+//Solution v2 priorizitation of the mailmen with the smallest length
+
+app.use("/v2", v2Routes);
 //Mailmen
 app.use("/mailmen", mailmensRoutes);
 

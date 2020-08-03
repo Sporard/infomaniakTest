@@ -19,7 +19,6 @@ exports.Solution = (req, res, next) => {
     //Récupération des data
     packages = req.body.packages;
     mailmens = req.body.mailmen;
-    console.log(req.body.packages)
 
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure
@@ -50,33 +49,41 @@ exports.Solution = (req, res, next) => {
         //Si on dépasse les 240 avant d'arriver au colis en cours
         //On passe au prochain mailmen
         if (mailmens[indice_mail].length + new_distance >= 240.00) {
-            indice_mail += 1;
+            //indice_mail += 1;
+            pack_delivred = false;
         }
         //Si on dépasse en rentrant à la maison apres
         //on passe au prochain mailmen
-        if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
-            indice_mail += 1;
+        else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
+            //indice_mail += 1;
+            pack_delivred = false;
 
         }
         //Si le paquet n'a pas été livré et qu'on a tester sur
         // tout les mailmens alors on le mets en attente
-        if (indice_mail >= mailmens.length && !pack_delivred) {
+        else if (indice_mail >= mailmens.length && !pack_delivred) {
             waiting.push(packages[indice_pack]);
-            indice_pack +=1;
-            indice_mail = 0;
+            // indice_pack +=1;
+            // indice_mail = 0;
+            pack_delivred = false;
         }
         // Le paquet est délivré
         else {
+            pack_delivred = true;
+        }
+        //Passage a l'élément suivant
+        //Si le package est délivré alors on passe au livreurs et au package suivant
+        if (pack_delivred) {
             mailmens[indice_mail].packages.push(packages[indice_pack].uid);
             mailmens[indice_mail].x = packages[indice_pack].x;
             mailmens[indice_mail].y = packages[indice_pack].y;
             mailmens[indice_mail].length += new_distance;
-            indice_pack += 1;
-            indice_mail += 1;
-            pack_delivred = true;
+            indice_pack++;
+            indice_mail++;
+        } else {
+            //Sinon on passe au mailmen suivant pour essayer avec lui
+            indice_mail ++;
         }
-        //On boucle sur les livreurs pour bien redistribuer les packages
-
         if (indice_mail >= mailmens.length) {
             indice_mail = 0;
 

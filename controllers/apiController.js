@@ -1,4 +1,4 @@
-const calculDistance = function (Xa,Ya,Xb,Yb){
+const distance = function (Xa,Ya,Xb,Yb){
     let Xab =  (Xb - Xa) ** 2;
     let Yab =  (Yb - Ya) ** 2;
     return Math.sqrt(Xab + Yab);
@@ -12,12 +12,12 @@ exports.postData = (req,res,next) => {
 }
 
 exports.Solution = (req, res, next) => {
-    //Récupération des data
+    //Data
     let packages = req.body.packages;
     let mailmens = req.body.mailmen;
 
-    //On garde les points de départ des mailmens
-    //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure
+    //We need to keep the home of mailmen in order
+    //to came back after the delivery
 
     mailmens.forEach(mailmen => {
         mailmen.homeX = mailmen.x;
@@ -27,8 +27,7 @@ exports.Solution = (req, res, next) => {
     })
     let sol = [];
 
-    //On distribue chaque package
-    //on donne un packet par livreur et on boucle sur les livreurs pour etre équitable 
+
     let indice_pack = 0;
     let indice_mail = 0;
     let pack_delivred;
@@ -37,38 +36,32 @@ exports.Solution = (req, res, next) => {
     indice_pack = 0;
     indice_mail = 0;
     while (indice_pack < packages.length) {
-        //Si le pack a été pris pas un mailmen
+
         pack_delivred = false;
-        new_distance = calculDistance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
-        new_to_home_length = calculDistance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
-
-        //Si on dépasse les 240 avant d'arriver au colis en cours
-        //On passe au prochain mailmen
+        new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
+        new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
+        // If we go over 240 km with the package 
         if (mailmens[indice_mail].length + new_distance >= 240.00) {
-            //indice_mail += 1;
+            
             pack_delivred = false;
         }
-        //Si on dépasse en rentrant à la maison apres
-        //on passe au prochain mailmen
+        //If we go over 240km by returning home
         else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
-            //indice_mail += 1;
             pack_delivred = false;
 
         }
-        //Si le paquet n'a pas été livré et qu'on a tester sur
-        // tout les mailmens alors on le mets en attente
+        //If the package hasn't been delivred we put it into waiting room
         else if (indice_mail >= mailmens.length && !pack_delivred) {
             waiting.push(packages[indice_pack]);
-            // indice_pack +=1;
-            // indice_mail = 0;
             pack_delivred = false;
         }
-        // Le paquet est délivré
+        // Package delivred
         else {
             pack_delivred = true;
         }
-        //Passage a l'élément suivant
-        //Si le package est délivré alors on passe au livreurs et au package suivant
+        //If the package is delivred so we update the data of the mailmen
+        //We go to the next package and mailmen in order to distribute
+        //package equitably
         if (pack_delivred) {
             mailmens[indice_mail].packages.push(packages[indice_pack].uid);
             mailmens[indice_mail].x = packages[indice_pack].x;
@@ -77,15 +70,17 @@ exports.Solution = (req, res, next) => {
             indice_pack++;
             indice_mail++;
         } else {
-            //Sinon on passe au mailmen suivant pour essayer avec lui
+            //If the package is not delivred we go to the next one and the next mailmen
             indice_mail ++;
             indice_pack ++;
         }
+        //If we have try every mailmen but not every package we go back to the first mailmen
         if (indice_mail >= mailmens.length) {
             indice_mail = 0;
-
         }
     }
+
+    // Building of the answer as asked in the subject
     mailmens.forEach(mailmen =>{
       sol.push({
           "uid":mailmen.uid,

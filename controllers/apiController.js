@@ -41,12 +41,12 @@ exports.Solution = (req, res, next) => {
         new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
         new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
         // If we go over 240 km with the package 
-        if (mailmens[indice_mail].length + new_distance >= 240.00) {
+        if (mailmens[indice_mail].length + new_distance > 240.00) {
             
             pack_delivred = false;
         }
         //If we go over 240km by returning home
-        else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
+        else if (indice_mail < mailmens.length &&(mailmens[indice_mail].length + new_distance + new_to_home_length) > 240.00  ) {
             pack_delivred = false;
 
         }

@@ -3,7 +3,8 @@ const bodyparser = require('body-parser');
 const options = {
     inflate: true,
     limit: 1000,
-    extended: true
+    extended: true,
+    type: "application/x-www-form-urlencoded"
 }
 var qs = require('querystring');
 const apiRoutes = require('./routes/api');
@@ -22,7 +23,7 @@ app.use((req,res, next) => {
 });
 
 // BODY TO JSON
-app.use(bodyparser.json());
+app.use(bodyparser.json(options));
 app.use(bodyparser.urlencoded(options));
 
 

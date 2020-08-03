@@ -1,7 +1,7 @@
 let packages = require("../models/package");
 let mailmens = require("../models/mailmen");
 let waiting = require("../models/waiting");
-
+var qs = require('querystring');
 const calculDistance = function (Xa,Ya,Xb,Yb){
     let Xab =  (Xb - Xa) ** 2;
     let Yab =  (Yb - Ya) ** 2;
@@ -12,14 +12,14 @@ const calculDistance = function (Xa,Ya,Xb,Yb){
 exports.postData = (req,res,next) => {
     packages = req.body.packages;
     mailmen = req.body.mailmen;
-    return res.status(200);
+    return res.status(200).json(req.body);
 }
 
 exports.Solution = (req, res, next) => {
     //Récupération des data
-    console.log(req);
-    packages = req.data.packages;
-    mailmens = req.data.mailmen;
+    packages = req.body.packages;
+    mailmens = req.body.mailmen;
+    console.log(req.body.packages)
 
     //On garde les points de départ des mailmens
     //On ajoute aussi la distance parcouru par le mailmen au fur et a mesure

@@ -38,7 +38,7 @@ const closetPackage = function (mailmens, closeMailmen, packages, startPack) {
         }
     }
     new_to_home_length = distance(packages[min_index].x,packages[min_index].y,mailmens[closeMailmen].homeX,mailmens[closeMailmen].homeY);
-    if ((mailmens[closeMailmen].length + new_distance + new_to_home_length) > 240.0){
+    if ((mailmens[closeMailmen].length + new_distance + new_to_home_length) >= 240.0){
         return undefined;
     }
     return min_index;
@@ -51,6 +51,17 @@ exports.Solution = (req, res, next) => {
     //Data
     let packages = req.body.packages;
     let mailmens = req.body.mailmen;
+
+    if (!packages) {
+        return res.status(400).json({
+            "error": "no packages"
+        })
+    }
+    if (!mailmens) {
+        return res.status(400).json({
+            "error": "no mailmens"
+        })
+    }
 
     //We need to keep the home of mailmen in order
     //to came back after the delivery

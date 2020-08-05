@@ -20,9 +20,19 @@ exports.Solution = (req, res, next) => {
     let packages = req.body.packages;
     let mailmens = req.body.mailmen;
 
+    if (!packages) {
+        return res.status(400).json({
+            "error": "no packages"
+        })
+    }
+    if (!mailmens) {
+        return res.status(400).json({
+            "error": "no mailmens"
+        })
+    }
+
     //We need to keep the home of mailmen in order
     //to came back after the delivery
-    console.log(req);
     mailmens.forEach(mailmen => {
         mailmen.homeX = mailmen.x;
         mailmen.homeY = mailmen.y;
@@ -42,12 +52,8 @@ exports.Solution = (req, res, next) => {
         pack_delivred = true;
         new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
         new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
-        // If we go over 240 km with the package
-        if (mailmens[indice_mail].length + new_distance > 240.00) {
-            pack_delivred = false;
-        }
         //If we go over 240km by returning home
-        else if ((mailmens[indice_mail].length + new_distance + new_to_home_length) > 240.00) {
+        if ((mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00) {
             pack_delivred = false;
 
         }

@@ -4,7 +4,7 @@ const optionsURL = {
     inflate: true,
     limit: '50mb',
     extended: true,
-    type: "application/x-www-form-urlencoded"
+    type: ["application/x-www-form-urlencoded","application/json"]
 }
 const optionJSON = {
     inflate: true,

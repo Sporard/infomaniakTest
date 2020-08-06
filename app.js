@@ -13,13 +13,22 @@ const optionJSON = {
     type: "application/json"
 }
 
-
+//First version of the algorithm
 const v1Routes = require('./routes/v1');
+//Second version of the algorithm
 const v2Routes = require('./routes/v2');
+//Last version of the algorithm
 const solutionRoute = require('./routes/solution')
-const mailmensRoutes = require('./routes/mailmen');
-const packageRoutes = require('./routes/package');
-const waitingRoutes = require('./routes/waiting');
+
+//API ROUTES
+
+
+const apiRoutes = require('./routes/apiRoutes');
+const mailmensRoutes = require('./routes/api/mailmen');
+const packageRoutes = require('./routes/api/package');
+const waitingRoutes = require('./routes/api/waiting');
+const mailmenRoutes = require('./routes/api/mailmen');
+
 const app = express();
 
 // CORS HEADERS
@@ -35,22 +44,21 @@ app.use((req,res, next) => {
 app.use(bodyparser.json(optionsURL));
 app.use(bodyparser.urlencoded(optionsURL));
 
-//Solution
-app.use("/", solutionRoute);
-//Solution v1 straightforward way
+
+//First version
 app.use("/v1", v1Routes);
 
-//Solution v2 priorizitation of the mailmen with the smallest length
+//Seconde version
 
 app.use("/v2", v2Routes);
-//Mailmen
-app.use("/mailmen", mailmensRoutes);
 
-//Packages
-app.use("/package", packageRoutes);
+//Main solution
+app.use("/", solutionRoute);
 
-// waiting
+// API
 
-app.use("/waiting", waitingRoutes);
-
+app.use("/api",apiRoutes);
+app.use("/api/mailmen",mailmenRoutes);
+app.use("/api/packages",packageRoutes);
+app.use("/api/waiting",waitingRoutes);
 module.exports = app;

@@ -1,9 +1,9 @@
-const distance = function (Xa,Ya,Xb,Yb){
-    let Xab =  (Xb - Xa) ** 2;
-    let Yab =  (Yb - Ya) ** 2;
-    return Math.sqrt(Xab + Yab);
-}
+const utils = require('../utils/utils');
 
+
+//First version of the algorithm
+//We just try with the current mailment the current package
+//If it can't be delivivred so we pass to the next package
 exports.Solution = (req, res, next) => {
     //Data
     let packages = req.body.packages;
@@ -40,8 +40,8 @@ exports.Solution = (req, res, next) => {
     while (indice_pack < packages.length) {
 
         pack_delivred = true;
-        new_distance = distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
-        new_to_home_length = distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
+        new_distance = utils.distance(mailmens[indice_mail].x,mailmens[indice_mail].y,packages[indice_pack].x,packages[indice_pack].y);
+        new_to_home_length = utils.distance(packages[indice_pack].x,packages[indice_pack].y,mailmens[indice_mail].homeX,mailmens[indice_mail].homeY);
         //If we go over 240km by returning home
         if ((mailmens[indice_mail].length + new_distance + new_to_home_length) >= 240.00  ) {
             pack_delivred = false;
@@ -49,7 +49,6 @@ exports.Solution = (req, res, next) => {
         }
         //If the package hasn't been delivred we put it into waiting room
         else if (!pack_delivred) {
-            waiting.push(packages[indice_pack]);
             pack_delivred = false;
         }
         // Package delivred
@@ -79,6 +78,10 @@ exports.Solution = (req, res, next) => {
 
     // Building of the answer as asked in the subject
     mailmens.forEach(mailmen =>{
+        home_distance = utils.distance(mailmen.x,mailmen.y,mailmen.homeX,mailmen.homeY);
+        mailmen.length += home_distance;
+        mailmen.x = mailmen.homeX;
+        mailmen.y = mailmen.homeY;
       sol.push({
           "uid":mailmen.uid,
           "tour":mailmen.packages,

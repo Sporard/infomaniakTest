@@ -1,4 +1,4 @@
-packages = require("../models/package");
+packages = require("../../models/package");
 
 
 exports.getPackages = (req,res,next) => {

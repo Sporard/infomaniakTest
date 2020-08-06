@@ -137,3 +137,12 @@ exports.getAllData = (req,res,next) => {
         "waiting" : waiting
     })
 }
+
+//Clear all data 
+// ONLY because of heroku host
+exports.clear = (req,res,next) => {
+    waiting = [];
+    packages = [];
+    mailmens =[];
+    return res.status(200);
+}

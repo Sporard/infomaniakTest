@@ -7,6 +7,6 @@ apiRouter.get("/", apiController.getAllData);
 
 apiRouter.post("/solution", apiController.Solution);
 
-
+apiRouter.get('/clear', apiController.clear);
 
 module.exports = apiRouter;

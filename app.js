@@ -23,11 +23,11 @@ const solutionRoute = require('./routes/solution')
 //API ROUTES
 
 
-const apiRoutes = require('./routes/apiRoutes');
-const mailmensRoutes = require('./routes/api/mailmen');
+const apiRoutes = require('./routes/api');
+const mailmenRoutes = require('./routes/api/mailmen');
 const packageRoutes = require('./routes/api/package');
 const waitingRoutes = require('./routes/api/waiting');
-const mailmenRoutes = require('./routes/api/mailmen');
+
 
 const app = express();
 

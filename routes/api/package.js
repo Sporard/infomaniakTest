@@ -1,5 +1,5 @@
 const express = require('express');
-const packageController = require('../controllers/packageController');
+const packageController = require('../../controllers/api/packageController');
 const packageRouter = express.Router();
 
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const mailmenController = require('../controllers/mailmenController');
+const mailmenController = require('../../controllers/api/mailmenController');
 const mailmenRouter = express.Router();
 
 

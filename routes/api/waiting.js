@@ -1,5 +1,5 @@
 const express = require('express');
-const waitingController = require('../controllers/waitingController');
+const waitingController = require('../../controllers/api/waitingController');
 const waitingRouter = express.Router();
 
 

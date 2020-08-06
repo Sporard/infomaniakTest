@@ -1,4 +1,4 @@
-waiting = require("../models/waiting");
+waiting = require("../../models/waiting");
 
 exports.getWaiting = (req,res,next) => {
     console.log(waiting);

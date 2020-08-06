@@ -46,4 +46,4 @@ const closetPackage = function (mailmens, closeMailmen, packages, startPack) {
     return min_index;
 }
 
-export default {distance, smallest_mailmen, closetPackage}
+module.exports = {distance, smallest_mailmen, closetPackage}

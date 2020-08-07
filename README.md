@@ -119,7 +119,7 @@ A chaque nouvelle journée, nous ajoutons les nouveau livreurs dans la liste des
 
 * Website: https://www.linkedin.com/in/pierre-sabard/
 * Github: [@Sporard](https://github.com/Sporard)
-* LinkedIn: [@pierre sabard](https://linkedin.com/in/pierre sabard)
+* LinkedIn: [@pierre sabard](https://linkedin.com/in/pierre-sabard)
 
 
 

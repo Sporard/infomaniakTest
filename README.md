@@ -43,7 +43,7 @@ npm start
 le serveur sera alors normalement accessible sur [localhost](localhost:3000).
 
 ## Travail effectué
-# Infomanik test de recrutement
+
 
 Il s'agit de ma solution du test d'entrée à infomaniak.
 

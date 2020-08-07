@@ -1,0 +1,244 @@
+info:
+  description: This is the API made for the infomaniak Test
+  title: Infomaniak Test
+  version: 1.0.0
+host: 'https://infomaniaktest.herokuapp.com/'
+basePath: /
+produces:
+  - application/json
+schemes:
+  - http
+  - https
+swagger: '2.0'
+paths:
+  /api:
+    get:
+      parameters: []
+      description: This function is used to get all the data stocked by the API
+      tags:
+        - api
+      responses:
+        '200':
+          description: all the data
+  /api/delivery:
+    post:
+      parameters:
+        - name: request
+          in: body
+          description: the data for the current day
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      description: This function is used to get the list of delivery of the current day
+      tags:
+        - api
+      responses:
+        '200':
+          description: the list of package delivered by each mailmen
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Solution'
+        '400':
+          description: the data is not correct
+  /api/mailmen:
+    get:
+      parameters: []
+      description: This function is used to have all the mailmens stocked by the API
+      tags:
+        - mailmen
+      responses:
+        '200':
+          description: an array of all the mailmen
+  '/api/mailmen/:idMailmen':
+    get:
+      parameters:
+        - name: idMailMen
+          in: query
+          description: id of the mailmen
+          required: true
+          type: string
+      description: This function is used to get on specific mailmen in all the mailmen stocked by the api
+      tags:
+        - mailmen
+      responses:
+        '200':
+          description: the mailmen
+        '404':
+          description: the mailmen has not been found
+  /api/packages:
+    get:
+      parameters: []
+      description: This function is used to have all the package delivered  by the API
+      tags:
+        - packages
+      responses:
+        '200':
+          description: an array of all the mailmen
+  '/api/packages/:idPackage':
+    get:
+      parameters:
+        - name: idPackage
+          in: query
+          description: id of the package
+          required: true
+          type: string
+      description: This function is used to get on specific package delivered by the api
+      tags:
+        - packages
+      responses:
+        '200':
+          description: the package
+        '404':
+          description: the package has not been found
+  /api/waiting:
+    get:
+      parameters: []
+      description: This function is used to have all the package waiting to be delivered
+      tags:
+        - waiting
+      responses:
+        '200':
+          description: an array of all the package waiting in the waiting room
+  '/api/waiting/:idWaiting':
+    get:
+      parameters:
+        - name: idWaiting
+          in: query
+          description: id of the waiting package
+          required: true
+          type: string
+      description: This function is used to have all the package waiting to be delivered
+      tags:
+        - waiting
+      responses:
+        '200':
+          description: the package
+        '404':
+          description: the package has not been found in the waiting room
+  /:
+    post:
+      parameters:
+        - name: request
+          in: body
+          description: the data for the current day
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      description: This function is used to get a solution of the problem with the last version of the algorithm
+      tags:
+        - algorithm
+      responses:
+        '200':
+          description: the list of package delivered by each mailmen
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Solution'
+        '400':
+          description: the data is not correct
+  /v1:
+    post:
+      parameters:
+        - name: request
+          in: body
+          description: the data for the current day
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      description: This function is used to get a solution of the problem with the first version of the algorithm
+      tags:
+        - algorithm
+      responses:
+        '200':
+          description: the list of package delivered by each mailmen
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Solution'
+        '400':
+          description: the data is not correct
+  /v2:
+    post:
+      parameters:
+        - name: request
+          in: body
+          description: the data for the current day
+          required: true
+          schema:
+            $ref: '#/definitions/Request'
+      description: This function is used to get a solution of the problem with the second version of the algorithm
+      tags:
+        - algorithm
+      responses:
+        '200':
+          description: the list of package delivered by each mailmen
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Solution'
+        '400':
+          description: the data is not correct
+definitions:
+  Request:
+    required: []
+    properties:
+      packages:
+        type: array
+        items:
+          $ref: '#/definitions/Package'
+      mailmen:
+        type: array
+        items:
+          $ref: '#/definitions/Mailmen'
+  Solution:
+    required: []
+    properties:
+      uid:
+        type: string
+        description: ''
+      tour:
+        type: array
+        items:
+          type: string
+      length:
+        type: integer
+        description: ''
+  Mailmen:
+    required: []
+    properties:
+      uid:
+        type: string
+        description: mailmen's id
+      x:
+        type: integer
+        description: home X position
+      'y':
+        type: integer
+        description: home Y position
+  Package:
+    required: []
+    properties:
+      uid:
+        type: string
+        description: pacakge's id
+      x:
+        type: integer
+        description: package X position
+      'y':
+        type: integer
+        description: package Y position
+responses: {}
+parameters: {}
+securityDefinitions: {}
+tags:
+  - name: api
+    description: global operation of the API
+  - name: mailmen
+    description: operation on mailmen
+  - name: packages
+    description: operation on packages
+  - name: waiting
+    description: operation on waiting packages
+  - name: algorithm
+    description: the algorithm to solve the problem

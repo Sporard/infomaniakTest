@@ -1,7 +1,9 @@
 mailmens = require("../../models/mailmen")
 
 exports.getMailmens = (req,res,next) => {
-    return res.status(200).json(mailmens);
+    return res.status(200).json({
+        "mailmens": mailmens
+    });
 }
 
 exports.getMailmen = (req,res,next) => {

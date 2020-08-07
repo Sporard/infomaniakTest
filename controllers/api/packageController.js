@@ -2,7 +2,10 @@ packages = require("../../models/package");
 
 
 exports.getPackages = (req,res,next) => {
-    return res.status(200).json(packages.packages);
+    console.log(packages);
+    return res.status(200).json({
+        "packages": packages
+    });
 }
 
 exports.getPackage = (req,res,next) => {

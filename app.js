@@ -1,16 +1,30 @@
 const express = require('express');
 const bodyparser = require('body-parser');
+const app = express();
+const expressSwagger = require('express-swagger-generator')(app);
+let optionSwagger = {
+    swaggerDefinition: {
+        info: {
+            description: 'This is the API made for the infomaniak Test',
+            title: 'Infomaniak Test',
+            version: '1.0.0'
+        },
+        host: 'https://infomaniaktest.herokuapp.com/',
+        basePath: '/',
+        produces: [
+            "application/json"
+        ],
+        schemes: ['http','https'],
+    },
+    basedir: __dirname,
+    files: ['./routes/**/*.js']
+};
+expressSwagger(optionSwagger);
 const optionsURL = {
     inflate: true,
     limit: '50mb',
     extended: true,
     type: ["application/x-www-form-urlencoded","application/json"]
-}
-const optionJSON = {
-    inflate: true,
-    limit: '50mb',
-    extended: true,
-    type: "application/json"
 }
 
 //First version of the algorithm
@@ -22,14 +36,13 @@ const solutionRoute = require('./routes/solution')
 
 //API ROUTES
 
-
 const apiRoutes = require('./routes/api');
 const mailmenRoutes = require('./routes/api/mailmen');
 const packageRoutes = require('./routes/api/package');
 const waitingRoutes = require('./routes/api/waiting');
 
 
-const app = express();
+
 
 // CORS HEADERS
 app.use((req,res, next) => {

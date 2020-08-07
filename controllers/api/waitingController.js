@@ -1,8 +1,9 @@
 waiting = require("../../models/waiting");
 
 exports.getWaiting = (req,res,next) => {
-    console.log(waiting);
-    return res.status(200).json(waiting);
+    return res.status(200).json({
+        "waiting":waiting
+    });
 }
 
 exports.getWaitingPack = (req, res, next) => {

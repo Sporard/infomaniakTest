@@ -1,9 +1,7 @@
 const express = require('express');
 const v1Controller = require('../controllers/v1Controller');
 const v1Router = express.Router();
-v1Router.get("/",function(req, res,next){
-    res.send("hello world v1");
-})
+
 /**
  * This function is used to get a solution of the problem with the first version of the algorithm
  * @route POST /v1

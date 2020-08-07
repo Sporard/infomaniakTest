@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyparser = require('body-parser');
+const path = require('path')
 const app = express();
 const expressSwagger = require('express-swagger-generator')(app);
 let optionSwagger = {
@@ -27,12 +28,13 @@ const optionsURL = {
     type: ["application/x-www-form-urlencoded","application/json"]
 }
 
+
 //First version of the algorithm
 const v1Routes = require('./routes/v1');
 //Second version of the algorithm
 const v2Routes = require('./routes/v2');
 //Last version of the algorithm
-const solutionRoute = require('./routes/solution')
+const solutionRoute = require('./routes/v3')
 
 //API ROUTES
 
@@ -66,7 +68,7 @@ app.use("/v1", v1Routes);
 app.use("/v2", v2Routes);
 
 //Main solution
-app.use("/", solutionRoute);
+app.use("/v3", solutionRoute);
 
 // API
 
@@ -74,4 +76,13 @@ app.use("/api",apiRoutes);
 app.use("/api/mailmen",mailmenRoutes);
 app.use("/api/packages",packageRoutes);
 app.use("/api/waiting",waitingRoutes);
+
+/**
+ * STATIC FILES
+ */
+
+ app.use("/",express.static('public'));
+ app.get('*',function(req,res){
+     res.sendFile(path.join(__dirname + '/public/README.html'))
+ })
 module.exports = app;

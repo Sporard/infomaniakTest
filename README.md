@@ -1,3 +1,48 @@
+<h1 align="center">Welcome to infomaniaktest 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://infomaniaktest.herokuapp.com/api-docs" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/Sporard/infomaniakTest/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/Sporard/infomaniakTest/blob/master/LICENSE" target="_blank">
+    <img alt="License: ISC" src="https://img.shields.io/github/license/Sporard/infomaniaktest" />
+  </a>
+</p>
+
+> Test d'infomaniak pour l'alternance
+
+### 🏠 [Homepage](https://github.com/Sporard/infomaniakTest#readme)
+
+### ✨ [Demo](https://infomaniaktest.herokuapp.com)
+
+## Installation
+Si le host de l'api ne fonctionne pas vous pouvez l'installer directement sur une machine pour cela il vous faudra Node JS.
+
+[Télécharger Node JS ](https://nodejs.org/en/)
+
+Puis clonez le dépôt et aller dans le dossier correspondant 
+```
+git clone https://github.com/Sporard/infomaniakTest.git
+cd infomaniakTest
+```
+
+
+```sh
+npm install
+```
+
+## Utilisation
+
+```sh
+npm start
+```
+
+le serveur sera alors normalement accessible sur [localhost](localhost:3000).
+
+## Travail effectué
 # Infomanik test de recrutement
 
 Il s'agit de ma solution du test d'entrée à infomaniak.
@@ -6,9 +51,9 @@ Le backend a été réalisé en Node Js avec le module express pour le server ht
 
 
 Il y a plusieurs routes qui correspondent à l'application que j'ai créee. Les premières sont des routes pour l'algorithme de résolution du problème.
-- [La première version de l'algorithme](#Première version de l'algorithme)  
-- [La deuxième version de l'algorithme](#Deuxième version de l'algorithme)  
-- [La dernière version de l'algorithme](#Troisième version de l'algorithme)
+- [La première version de l'algorithme](#Première-version-de-l'algorithme)  
+- [La deuxième version de l'algorithme](#Deuxième-version-de-l'algorithme)  
+- [La dernière version de l'algorithme](#Troisième-version-de-l'algorithme)
 
 Les adresses sont requêtables selon le sujet. C'est à dire avec une requête du même format et sous POST.
 
@@ -38,8 +83,8 @@ De plus les paquets livrés sont enlevés de la liste donc chaque paquet sont tr
 Maintenant que l'algorithme déterminant une solution au problème, cela reste néamoins pas très pratique si on veut mettre en oeuvre une résolution concrete. C'est pourquoi j'ai créer un prototype d'API qui pourrait permettre de construire un site ou une application permettant la gestion des livraisons des paquets.
 
 Plus de détail technique se trouve sur la documentation swagger de l'api.
-- [ici ](https://infomaniaktest.herokuapp.com/api-docs)
-- [ou la](#Doc-de-l'api)
+- [version WEB](https://infomaniaktest.herokuapp.com/api-docs)
+- [version README](#Doc-de-l'api)
 
 ### Les ressources
 
@@ -63,7 +108,23 @@ A chaque nouvelle journée, nous ajoutons les nouveau livreurs dans la liste des
  `/api/packages/:idPackage` | GET    | No    | This function is used to get on specific package delivered by the api                          
  `/api/waiting`             | GET    | No    | This function is used to have all the package waiting to be delivered                          
  `/api/waiting/:idWaiting`  | GET    | No    | This function is used to have all the package waiting to be delivered                          
- `/`                        | POST   | No    | This function is used to get a solution of the problem with the last version of the algorithm  
+ `/v3`                        | POST   | No    | This function is used to get a solution of the problem with the last version of the algorithm  
  `/v1`                      | POST   | No    | This function is used to get a solution of the problem with the first version of the algorithm 
  `/v2`                      | POST   | No    | This function is used to get a solution of the problem with the second version of the algorithm
 <!-- /markdown-swagger -->
+
+## Author
+
+👤 **Pierre Sabard**
+
+* Website: https://www.linkedin.com/in/pierre-sabard/
+* Github: [@Sporard](https://github.com/Sporard)
+* LinkedIn: [@pierre sabard](https://linkedin.com/in/pierre sabard)
+
+
+
+## 📝 License
+
+Copyright © 2020 [Pierre Sabard](https://github.com/Sporard).<br />
+This project is [ISC](https://github.com/Sporard/infomaniakTest/blob/master/LICENSE) licensed.
+

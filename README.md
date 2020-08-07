@@ -6,9 +6,9 @@ Le backend a été réalisé en Node Js avec le module express pour le server ht
 
 
 Il y a plusieurs routes qui correspondent à l'application que j'ai créee. Les premières sont des routes pour l'algorithme de résolution du problème.
-- [La première version de l'algorithme](https://infomaniaktest.herokuapp.com/v1)  
-- [La deuxième version de l'algorithme](https://infomaniaktest.herokuapp.com/v2)  
-- [La dernière version de l'algorithme](https://infomaniaktest.herokuapp.com/)
+- [La première version de l'algorithme](#Première version de l'algorithme)  
+- [La deuxième version de l'algorithme](#Deuxième version de l'algorithme)  
+- [La dernière version de l'algorithme](#Troisième version de l'algorithme)
 
 Les adresses sont requêtables selon le sujet. C'est à dire avec une requête du même format et sous POST.
 
@@ -38,7 +38,8 @@ De plus les paquets livrés sont enlevés de la liste donc chaque paquet sont tr
 Maintenant que l'algorithme déterminant une solution au problème, cela reste néamoins pas très pratique si on veut mettre en oeuvre une résolution concrete. C'est pourquoi j'ai créer un prototype d'API qui pourrait permettre de construire un site ou une application permettant la gestion des livraisons des paquets.
 
 Plus de détail technique se trouve sur la documentation swagger de l'api.
-[ici ]
+- [ici ](https://infomaniaktest.herokuapp.com/api-docs)
+- [ou la](#Doc-de-l'api)
 
 ### Les ressources
 

@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "express-swagger-generator": "^1.1.17",
     "html-render": "^0.1.1",
+    "jade": "^1.11.0",
     "markdown-swagger": "^1.0.4",
     "nodemon": "^2.0.4"
   },

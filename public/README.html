@@ -1,29 +1,371 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>🏠 [Homepage](https://github.com/Sporard/infomaniakTest#readme)</title>
-        <style>
-</style>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
 <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
-            }
-        </style>
-        <style>
-.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
 </style>
-        
-        
-        
-    </head>
-    <body class="vscode-light">
-        <h1 align="center">Bienvenue sur le README du test d'entrée à Infomaniak 👋</h1>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 align="center">Bienvenue sur le README du test d'entrée à Infomaniak 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://infomaniaktest.herokuapp.com/api-docs" target="_blank">
@@ -39,61 +381,62 @@
 <blockquote>
 <p>Test d'infomaniak pour l'alternance</p>
 </blockquote>
-<h3 id="-homepage">🏠 <a href="https://github.com/Sporard/infomaniakTest#readme">Homepage (Github)</a></h3>
-<h3 id="-demo">✨ <a href="https://infomaniaktest.herokuapp.com">Demo</a></h3>
+<h3 id="%F0%9F%8F%A0-homepage">🏠 <a href="https://github.com/Sporard/infomaniakTest#readme">Homepage</a></h3>
+<h3 id="%E2%9C%A8-demo">✨ <a href="https://infomaniaktest.herokuapp.com">Demo</a></h3>
 <h2 id="installation">Installation</h2>
-<p>Si le host de l'api ne fonctionne pas vous pouvez l'installer directement sur une machine pour cela il vous faudra Node JS.</p>
+<p>Si le host de l'api ne fonctionne pas vous pouvez l'installer directement sur une machine pour cela, il vous faudra Node JS.</p>
 <p><a href="https://nodejs.org/en/">Télécharger Node JS </a></p>
 <p>Puis clonez le dépôt et aller dans le dossier correspondant</p>
-<pre><code><code><div>git clone https://github.com/Sporard/infomaniakTest.git
+<pre class="hljs"><code><div>git clone https://github.com/Sporard/infomaniakTest.git
 cd infomaniakTest
-</div></code></code></pre>
-<pre><code class="language-sh"><div>npm install
+</div></code></pre>
+<p>Puis installer les dépendences.</p>
+<pre class="hljs"><code><div>npm install
 </div></code></pre>
 <h2 id="utilisation">Utilisation</h2>
-<pre><code class="language-sh"><div>npm start
+<pre class="hljs"><code><div>npm start
 </div></code></pre>
-<p>le serveur sera alors normalement accessible sur <a href="localhost:3000">localhost</a>.</p>
-<h2 id="travail-effectué">Travail effectué</h2>
-<p>Il s'agit de ma solution du test d'entrée à infomaniak.</p>
-<p>Le backend a été réalisé en Node Js avec le module express pour le server http.</p>
+<p>le serveur sera alors normalement accessible sur <a href="localhost:3000">localhost</a>. (Sur le port 3000 à moins que celui-ci soit déjà utilisé)</p>
+<h2 id="travaileffectue">Travail effectué</h2>
+<p>Il s'agit de ma solution du test d'entrée à infomaniak.
+Le backend a été réalisé en Node Js avec le module express pour le serveur http.</p>
 <p>Il y a plusieurs routes qui correspondent à l'application que j'ai créee. Les premières sont des routes pour l'algorithme de résolution du problème.</p>
 <ul>
-<li><a href="#Premi%C3%A8re-version-de-l'algorithme">La première version de l'algorithme</a></li>
-<li><a href="#Deuxi%C3%A8me-version-de-l'algorithme">La deuxième version de l'algorithme</a></li>
-<li><a href="#Troisi%C3%A8me-version-de-l'algorithme">La dernière version de l'algorithme</a></li>
+<li><a href="#premiereversion">La première version de l'algorithme</a></li>
+<li><a href="#deuxiemeversion">La deuxième version de l'algorithme</a></li>
+<li><a href="#troisiemeversion">La dernière version de l'algorithme</a></li>
 </ul>
 <p>Les adresses sont requêtables selon le sujet. C'est à dire avec une requête du même format et sous POST.</p>
 <p>Ce README se divise en deux partie:</p>
 <ul>
-<li><a href="#L'algorithme">La partie expliquant les algorithmes utilisés</a></li>
-<li><a href="#L'API">Une partie expliquant l'API créee</a></li>
+<li><a href="#lalgorithme">La partie expliquant les algorithmes utilisés</a></li>
+<li><a href="#api">Une partie expliquant l'API créee</a></li>
 </ul>
 <h3 id="lalgorithme">L'algorithme</h3>
-<p>Le problème ressemble à un problème de sac à dos avec multiples sac. Or ce problème est NP-Complet, je n'ai donc la prétention d'avoir la solution exacte à chaque fois.
-Cependant dans cette section je vais vous décrire les différentes version de l'algorithme pour résoudre le problème soumis dans le sujet.</p>
-<h3 id="première-version-de-lalgorithme">Première version de l'algorithme</h3>
-<p>Il s'agit d'une version assez basique. En effet, l'algorithme test juste si le paquets peut être délivré par le livreur courant. Si la distance parcourue par le livreur ainsi que son retour à son point de départ dépasse les 240Km alors on passe au prochain packet. Si un packet peut-être délivré alors on passe au prochain livreur et au prochain packet afin de faire une distribution assez équitable.
-Le problème de cet algorithme est la perte des paquets, chaque paquets qui ne peuvent pas être livré par le livreur courant sont perdu. Ce qui peut-être assez problématique pour une optimisation du nombre de paquets délivrés.</p>
-<h3 id="deuxième-version-de-lalgorithme">Deuxième version de l'algorithme</h3>
-<p>Le principe d'amélioration de la deuxième version essaie de distribué le plus de paquets possible. La majeur différence provient de la détérmination du livreur courant. Il est déterminé par rapport à la distance qu'il a déjà parcourue. On prend donc celui qui en le moins de distance parcourue.
-Cet algorithme améliore donc le nombre de paquets distribués car s'ils ne peuvent pas être pris par le livreur avec le moins de distance parcourue alors il ne peut tout simplement pas être distribué. De plus, cela reste une distribution équitable car les livreurs étant payé par la distance parcourue auront tous une distance proche les uns des autres. Celui qui livre le packet à peu de chance de livrer le prochain car sa distance à augmentée.</p>
-<h3 id="troisième-version-de-lalgorithme">Troisième version de l'algorithme</h3>
-<p>La dernière itération de l'algorithme est une amélioration de la précédente. Maintenant que le choix des livreurs est optimisé, il ne reste plus que le choix du paquet. Celui-ci est le plus proche parmis les paquets du livreur courant. Ainsi le nombre de paquet laissé de côté diminue fortement. Si un paquet ne peut pas être livré par le livreur ayant le moins de distance parcourue et qui est juste à côté alors il y a très peu de chance qu'il puisse l'être.
-De plus les paquets livrés sont enlevés de la liste donc chaque paquet sont traités au moins une fois.</p>
-<h2 id="lapi">L'API</h2>
-<p>Maintenant que l'algorithme déterminant une solution au problème, cela reste néamoins pas très pratique si on veut mettre en oeuvre une résolution concrete. C'est pourquoi j'ai créer un prototype d'API qui pourrait permettre de construire un site ou une application permettant la gestion des livraisons des paquets.</p>
+<p>Le problème ressemble à un problème de sac à dos avec multiples sac. Or, ce problème est NP-Complet, je n'ai donc pas la prétention d'avoir la solution exacte à chaque fois.
+Cependant, dans cette section, je vais vous décrire les différentes versions de l'algorithme pour résoudre le problème soumis dans le sujet.</p>
+<h3 id="premiereversion">Premiere version de l'algorithme</h3>
+<p>Il s'agit d'une version assez basique. En effet, l'algorithme test juste si le paquet peut être délivré par le livreur courant. Si la distance parcourue par le livreur ainsi que son retour à son point de départ dépasse les 240 Km alors on passe au prochain paquet. Si un paquet peut-être délivré alors on passe au prochain livreur et au prochain paquet afin de faire une distribution assez équitable.
+Le problème de cet algorithme est la perte des paquets, chaque paquet qui ne peuvent pas être livré par le livreur courant sont perdu. Cette version pose un certain problème lorsque l'on veut optimiser le nombre de paquets distribués.</p>
+<h3 id="deuxiemeversion">Deuxieme version de l'algorithme</h3>
+<p>Le principe d'amélioration de la deuxième version essaie de distribuer le plus de paquet possible. La majeure différence provient de la détermination du livreur courant. Il est déterminé par rapport à la distance qu'il a déjà parcourue. On prend donc celui qui a parcourue le moins de distance.
+Cet algorithme améliore donc le nombre de paquets distribués, car s'ils ne peuvent pas être pris par le livreur avec le moins de distance parcourue alors il ne peut tout simplement pas être distribué. De plus, cela reste une distribution équitable, car les livreurs étant payés par la distance parcourue auront tous une distance proche de les uns des autres. Celui qui livre le paquet à peu de chance de livrer le prochain car sa distance à augmentée.</p>
+<h3 id="troisiemeversion">Troisieme version de l'algorithme</h3>
+<p>La dernière itération de l'algorithme est une amélioration de la précédente. Maintenant que le choix des livreurs est optimisé, il ne reste plus que le choix du paquet. Celui-ci est le plus proche parmi les paquets du livreur courant. Ainsi, le nombre de paquets laissé de côté diminue fortement. Si un paquet ne peut pas être livré par le livreur ayant le moins de distance parcourue et qui est juste à côté alors il y a très peu de chance qu'il puisse l'être.
+De plus, les paquets livrés sont enlevés de la liste donc chaque paquet est traité au moins une fois.</p>
+<h2 id="api">L'API</h2>
+<p>Maintenant que l'algorithme déterminant une solution au problème, cela reste néanmoins pas très pratique si on veut mettre en œuvre une résolution concrète. C'est pourquoi j'ai créé un prototype d'API qui pourrait permettre de construire un site ou une application permettant la gestion des livraisons des paquets.</p>
 <p>Plus de détail technique se trouve sur la documentation swagger de l'api.</p>
 <ul>
 <li><a href="https://infomaniaktest.herokuapp.com/api-docs">version WEB</a></li>
-<li><a href="#Doc-de-l'api">version README</a></li>
+<li><a href="#Docapi">version README</a></li>
 </ul>
 <h3 id="les-ressources">Les ressources</h3>
 <p>L'api se repose sur les principales ressources du sujet : les livreurs et les paquets.</p>
 <h3 id="fonctionnement-de-lapi">Fonctionnement de l'API</h3>
-<p>Les livraisons fonctionne sous forme de jour. C'est à dire que chaque requête sur la route POST /api/delivery avec les données souhaitées en body est à considérer comme un nouveau jour, où chaque paquets sont nouveaux et que les livreurs sont ceux travaillant aujourd'hui.
-A chaque nouvelle journée, nous ajoutons les nouveau livreurs dans la liste des livreurs. Puis <a href="#Troisi%C3%A8me-version-de-l'algorithme">la dernière version de l'algorithme</a> se charge de distribué les paquets sauf que cette fois-ci chaque paquets non livrés sont mis en attente et ils passeront prioritaire le lendemain.</p>
-<h3 id="doc-de-lapi">Doc de l'api</h3>
+<p>Les livraisons fonctionnent sous forme de jour. C'est-à-dire que chaque requête sur la route POST /api/delivery avec les données souhaitées en body est à considérer comme un nouveau jour, où chaque paquets sont nouveaux et que les livreurs sont ceux travaillant aujourd'hui.
+À chaque nouvelle journée, nous ajoutons les nouveaux livreurs dans la liste des livreurs. Puis <a href="#troisiemeversion">la dernière version de l'algorithme</a> se charge de distribuer les paquets sauf que cette fois-ci chaque paquet non livré sont mis en attente et ils passeront prioritaire le lendemain.</p>
+<h3 id="docapi">Doc de l'api</h3>
 <!-- markdown-swagger -->
 <table>
 <thead>
@@ -177,13 +520,13 @@ A chaque nouvelle journée, nous ajoutons les nouveau livreurs dans la liste des
 <h2 id="author">Author</h2>
 <p>👤 <strong>Pierre Sabard</strong></p>
 <ul>
-<li>Website: <a href="https://www.linkedin.com/in/pierre-sabard/">https://www.linkedin.com/in/pierre-sabard/</a></li>
+<li>Website: https://www.linkedin.com/in/pierre-sabard/</li>
 <li>Github: <a href="https://github.com/Sporard">@Sporard</a></li>
-<li>LinkedIn: [@pierre sabard](<a href="https://linkedin.com/in/pierre-sabard">https://linkedin.com/in/pierre</a> sabard)</li>
+<li>LinkedIn: <a href="https://linkedin.com/in/pierre-sabard">@pierre sabard</a></li>
 </ul>
-<h2 id="-license">📝 License</h2>
+<h2 id="%F0%9F%93%9D-license">📝 License</h2>
 <p>Copyright © 2020 <a href="https://github.com/Sporard">Pierre Sabard</a>.<br />
 This project is <a href="https://github.com/Sporard/infomaniakTest/blob/master/LICENSE">ISC</a> licensed.</p>
 
-    </body>
-    </html>
+</body>
+</html>

@@ -37,7 +37,7 @@ npm install
 ## Utilisation
 
 ```sh
-npm start
+node server
 ```
 
 le serveur sera alors normalement accessible sur [localhost](localhost:3000). (Sur le port 3000 à moins que celui-ci soit déjà utilisé)
